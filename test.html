@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Outfit Card Modal</title>
+    <style>
+      /* ============= CARD ============= */
+      .outfit-card {
+        position: relative;
+        width: 280px;
+        height: 380px;
+        border-radius: 15px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+
+      .outfit-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: filter 0.4s ease;
+      }
+
+      .outfit-card:hover img {
+        filter: blur(3px) brightness(0.7);
+      }
+
+      .outfit-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .outfit-card:hover .outfit-overlay {
+        opacity: 1;
+      }
+
+      .outfit-view-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: #ff4c60;
+        font-size: 16px;
+        padding: 10px 20px;
+        border-radius: 40px;
+        backdrop-filter: blur(10px);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .outfit-view-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.05);
+      }
+
+      /* ============= MODAL ============= */
+      .outfit-modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(14px);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        animation: fadeInBg 0.3s ease forwards;
+      }
+
+      @keyframes fadeInBg {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .outfit-modal-content {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        box-shadow: 0 8px 50px rgba(255, 200, 200, 0.1),
+          0 0 60px rgba(255, 76, 96, 0.2);
+        max-width: 850px;
+        width: 90%;
+        color: white;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        gap: 0;
+        animation: slideUp 0.4s ease forwards;
+        position: relative;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .outfit-close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        font-size: 30px;
+        color: #fff;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .outfit-close-btn:hover {
+        color: #ff4c60;
+      }
+
+      /* ============= SIDE-BY-SIDE MODAL CONTENT ============= */
+      .outfit-modal-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .outfit-modal-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .outfit-modal-details {
+        flex: 1;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .outfit-modal-details h2 {
+        font-family: "Prata", serif;
+        font-size: 1.8rem;
+        color: #ff4c60;
+        margin-bottom: 15px;
+      }
+
+      .outfit-modal-details p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 25px;
+      }
+
+      .outfit-modal-details .outfit-book-btn {
+        background: rgba(255, 255, 255, 0.15);
+        color: #ff4c60;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 40px;
+        padding: 10px 25px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        width: fit-content;
+        align-self: center;
+      }
+
+      .outfit-modal-details .outfit-book-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-3px);
+      }
+
+      /* ============= RESPONSIVE ============= */
+      @media (max-width: 700px) {
+        .outfit-modal-content {
+          flex-direction: column;
+        }
+        .outfit-modal-image img {
+          height: 300px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="outfit-card-container">
+      <div class="outfit-card">
+        <div class="outfit-overlay">
+          <button class="outfit-view-btn">View More</button>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div id="outfit-modal" class="outfit-modal">
+        <div class="outfit-modal-content">
+          <span class="outfit-close-btn">&times;</span>
+
+          <div class="outfit-modal-image"></div>
+
+          <div class="outfit-modal-details"></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const outfitModal = document.getElementById("outfit-modal");
+      const outfitCloseBtn = document.querySelector(".outfit-close-btn");
+      const outfitModalImageContainer = document.querySelector(
+        ".outfit-modal-image"
+      );
+      const outfitModalDetailsContainer = document.querySelector(
+        ".outfit-modal-details"
+      );
+
+      // ==================== DYNAMIC DATA (multiple) ====================
+      const outfitList = [
+        {
+          image: "img/Mode.jpeg",
+          title: "Classic Agbada Set",
+          description:
+            "A timeless agbada ensemble made from premium fabric with intricate embroidery. Designed to blend traditional craftsmanship with modern elegance — perfect for any grand occasion.",
+        },
+        {
+          image: "img/Mode.jpeg",
+          title: "Executive 3-Piece Suit",
+          description:
+            "Sophisticated and sharp, tailored to perfection for business or formal occasions.",
+        },
+        {
+          image: "img/Mode.jpeg",
+          title: "Royal Kaftan",
+          description:
+            "Effortlessly elegant, featuring hand-stitched embroidery and soft fabric for all-day comfort.",
+        },
+      ];
+
+      // ==================== BUILD CARDS DYNAMICALLY ====================
+      const outfitContainer = document.getElementById("outfit-card-container");
+
+      outfitList.forEach((item) => {
+        const card = document.createElement("div");
+        card.classList.add("outfit-card");
+
+        const img = document.createElement("img");
+        img.src = item.image;
+        img.alt = item.title;
+
+        const overlay = document.createElement("div");
+        overlay.classList.add("outfit-overlay");
+
+        const btn = document.createElement("button");
+        btn.classList.add("outfit-view-btn");
+        btn.textContent = "View More";
+
+        overlay.appendChild(btn);
+        card.appendChild(img);
+        card.appendChild(overlay);
+        outfitContainer.appendChild(card);
+
+        // === Each button opens modal with its own data ===
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          openOutfitModal(item);
+        });
+      });
+
+      // ==================== MODAL LOGIC ====================
+      function openOutfitModal(item) {
+        // Clear previous modal content
+        outfitModalImageContainer.innerHTML = "";
+        outfitModalDetailsContainer.innerHTML = "";
+
+        const modalImg = document.createElement("img");
+        modalImg.src = item.image;
+        modalImg.alt = item.title;
+
+        const titleEl = document.createElement("h2");
+        titleEl.textContent = item.title;
+
+        const descEl = document.createElement("p");
+        descEl.textContent = item.description;
+
+        const buttonEl = document.createElement("button");
+        buttonEl.classList.add("outfit-book-btn");
+        buttonEl.textContent = "Book an Appointment";
+
+        outfitModalImageContainer.appendChild(modalImg);
+        outfitModalDetailsContainer.appendChild(titleEl);
+        outfitModalDetailsContainer.appendChild(descEl);
+        outfitModalDetailsContainer.appendChild(buttonEl);
+
+        outfitModal.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      outfitCloseBtn.addEventListener("click", () => {
+        outfitModal.style.display = "none";
+        document.body.style.overflow = "auto";
+      });
+
+      window.addEventListener("click", (e) => {
+        if (e.target === outfitModal) {
+          outfitModal.style.display = "none";
+          document.body.style.overflow = "auto";
+        }
+      });
+    </script>
+  </body>
+</html>

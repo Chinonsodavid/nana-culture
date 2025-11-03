@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/slider.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/card.css" />
+    <script src="js/index.js" defer></script>
+    <script src="js/slider.js" defer></script>
+    <script src="js/card.js" defer></script>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"
+      defer
+    ></script>
+  </head>
+
+  <style>
+    * {
+      overflow-y: scroll;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+      height: 100vh;
+    }
+  </style>
+
+  <body id="service-body">
+    <button class="menu-btn" id="menuBtn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="service-hero">
+      <div
+        class="hero-content"
+        style="position: relative; z-index: 2; color: white"
+      >
+        <nav>
+          <div class="logo" data-aos="fade-down" data-aos-duration="1000">
+            Nana culture
+          </div>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="service.html">Services</a></li>
+          </ul>
+          <div class="button">Book an Appointment</div>
+        </nav>
+
+        <h1><span class="colortext">O</span>ur Services</h1>
+      </div>
+    </div>
+    <div class="service-body-content">
+      <div style="padding: 0px 20px">
+        <p class="lestfind-text">
+          Let’s find the perfect fit for <span class="colortext">you</span> .
+        </p>
+      </div>
+      <p class="top-picks">Top Picks</p>
+
+      <div class="slider-container">
+        <div class="left-arrow" onclick="leftScroll()">
+          <i class="fa fa-angle-left" style="font-size: 24px"></i>
+        </div>
+        <div class="slider-content" id="slider-content">
+          <div class="slide">
+            <div class="media">
+              <img
+                src="https://raw.githubusercontent.com/siddnlw/codepen-assets/refs/heads/main/img/MegaGengar.jpg"
+                alt=""
+              />
+              <video src=""></video>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="media">
+              <img
+                src="https://raw.githubusercontent.com/siddnlw/codepen-assets/refs/heads/main/img/Lugia.jpg"
+                alt=""
+              />
+              <video src=""></video>
+            </div>
+            <div class="card-sections">
+              <div class="upper-section">
+                <div class="wishlist"><i class="fa fa-heart"></i></div>
+                <div class="price">$4.09</div>
+                <div class="cart"><i class="fa fa-cart-plus"></i></div>
+              </div>
+              <div class="lower-section">
+                <div class="card-caption">
+                  Lugia
+                  <div class="product-content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Maxime mollitia, molestiae quas vel sint commodi repudiandae
+                    consequuntur voluptatum laborum numquam blanditiis harum
+                    quisquam eius sed odit
+                  </div>
+                </div>
+                <div class="card-button" onclick="knowMoreToggle(1)">
+                  <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="media">
+              <img
+                src="https://raw.githubusercontent.com/siddnlw/codepen-assets/refs/heads/main/img/MegeLucario.jpg"
+                alt=""
+              />
+              <video src=""></video>
+            </div>
+            <div class="card-sections">
+              <div class="upper-section">
+                <div class="wishlist"><i class="fa fa-heart"></i></div>
+                <div class="price">$4.09</div>
+                <div class="cart"><i class="fa fa-cart-plus"></i></div>
+              </div>
+              <div class="lower-section">
+                <div class="card-caption">
+                  Mega Lucario
+                  <div class="product-content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Maxime mollitia, molestiae quas vel sint commodi repudiandae
+                    consequuntur voluptatum laborum numquam blanditiis harum
+                    quisquam eius sed odit
+                  </div>
+                </div>
+                <div class="card-button" onclick="knowMoreToggle(2)">
+                  <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="media">
+              <img
+                src="https://raw.githubusercontent.com/siddnlw/codepen-assets/refs/heads/main/img/zacian.jpg"
+                alt=""
+              />
+              <video src=""></video>
+            </div>
+            <div class="card-sections">
+              <div class="upper-section">
+                <div class="wishlist"><i class="fa fa-heart"></i></div>
+                <div class="price">$4.09</div>
+                <div class="cart"><i class="fa fa-cart-plus"></i></div>
+              </div>
+              <div class="lower-section">
+                <div class="card-caption">
+                  Zacian
+                  <div class="product-content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Maxime mollitia, molestiae quas vel sint commodi repudiandae
+                    consequuntur voluptatum laborum numquam blanditiis harum
+                    quisquam eius sed odit
+                  </div>
+                </div>
+                <div class="card-button" onclick="knowMoreToggle(3)">
+                  <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="media">
+              <img
+                src="https://raw.githubusercontent.com/siddnlw/codepen-assets/refs/heads/main/img/MegaCharizard.jpg"
+                alt=""
+              />
+              <video src=""></video>
+            </div>
+            <div class="card-sections">
+              <div class="upper-section">
+                <div class="wishlist"><i class="fa fa-heart"></i></div>
+                <div class="price">$4.09</div>
+                <div class="cart"><i class="fa fa-cart-plus"></i></div>
+              </div>
+
+              <div class="lower-section">
+                <div class="card-caption">
+                  Mega Charizard
+                  <div class="product-content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Maxime mollitia, molestiae quas vel sint commodi repudiandae
+                    consequuntur voluptatum laborum numquam blanditiis harum
+                    quisquam eius sed odit
+                  </div>
+                </div>
+                <div class="card-button" onclick="knowMoreToggle(4)">
+                  <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="media">
+              <img
+                src="https://raw.githubusercontent.com/siddnlw/codepen-assets/refs/heads/main/img/zacianAndZamazenta.jpg"
+                alt=""
+              />
+              <video src=""></video>
+            </div>
+            <div class="card-sections">
+              <div class="upper-section">
+                <div class="wishlist"><i class="fa fa-heart"></i></div>
+                <div class="price">$4.09</div>
+                <div class="cart"><i class="fa fa-cart-plus"></i></div>
+              </div>
+              <div class="lower-section">
+                <div class="card-caption">
+                  Zacian and Zamazenta
+                  <div class="product-content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Maxime mollitia, molestiae quas vel sint commodi repudiandae
+                    consequuntur voluptatum laborum numquam blanditiis harum
+                    quisquam eius sed odit
+                  </div>
+                </div>
+                <div class="card-button" onclick="knowMoreToggle(5)">
+                  <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="media">
+              <img
+                src="https://raw.githubusercontent.com/siddnlw/codepen-assets/refs/heads/main/img/Lucario.jpg"
+                alt=""
+              />
+              <video src=""></video>
+            </div>
+            <div class="card-sections">
+              <div class="upper-section">
+                <div class="wishlist"><i class="fa fa-heart"></i></div>
+                <div class="price">$4.09</div>
+                <div class="cart"><i class="fa fa-cart-plus"></i></div>
+              </div>
+
+              <div class="lower-section">
+                <div class="card-caption">
+                  Lucario
+                  <div class="product-content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Maxime mollitia, molestiae quas vel sint commodi repudiandae
+                    consequuntur voluptatum laborum numquam blanditiis harum
+                    quisquam eius sed odit
+                  </div>
+                </div>
+                <div class="card-button" onclick="knowMoreToggle(6)">
+                  <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="media">
+              <img
+                src="https://raw.githubusercontent.com/siddnlw/codepen-assets/refs/heads/main/img/Charizard.jpg"
+                alt=""
+              />
+              <video src=""></video>
+            </div>
+            <div class="card-sections">
+              <div class="upper-section">
+                <div class="wishlist"><i class="fa fa-heart"></i></div>
+                <div class="price">$4.09</div>
+                <div class="cart"><i class="fa fa-cart-plus"></i></div>
+              </div>
+              <div class="lower-section">
+                <div class="card-caption">
+                  Charizard
+                  <div class="product-content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Maxime mollitia, molestiae quas vel sint commodi repudiandae
+                    consequuntur voluptatum laborum numquam blanditiis harum
+                    quisquam eius sed odit
+                  </div>
+                </div>
+                <div class="card-button" onclick="knowMoreToggle(7)">
+                  <i class="fa fa-angle-double-down" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="slider-content-background"></div>
+        </div>
+        <div class="right-arrow" onclick="rightScroll()">
+          <i class="fa fa-angle-right" style="font-size: 24px"></i>
+        </div>
+      </div>
+
+      <div style="padding: 0px 20px">
+        <p class="lestfind-text">
+          Discover more <span class="colortext">Looks</span> .
+        </p>
+
+        <div id="outfit-card-container">
+          <div class="outfit-card">
+            <img src="img/Mode.jpeg" alt="Classic Agbada Set" />
+            <div class="outfit-overlay">
+              <button class="outfit-view-btn">View More</button>
+            </div>
+          </div>
+
+          <!-- Modal -->
+          <div id="outfit-modal" class="outfit-modal">
+            <div class="outfit-modal-content">
+              <span class="outfit-close-btn">&times;</span>
+
+              <div class="outfit-modal-image">
+                <img src="img/Mode.jpeg" alt="Classic Agbada Set" />
+              </div>
+
+              <div class="outfit-modal-details">
+                <h2>Classic Agbada Set</h2>
+                <p>
+                  A timeless agbada ensemble made from premium fabric with
+                  intricate embroidery. Designed to blend traditional
+                  craftsmanship with modern elegance — perfect for any grand
+                  occasion.
+                </p>
+                <button class="outfit-book-btn">Book an Appointment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>
+        © <span style="color: #ff4c60">Nana culture</span>. All rights reserved.
+      </p>
+    </footer>
+  </body>
+</html>
