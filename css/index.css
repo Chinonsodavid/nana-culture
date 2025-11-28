@@ -79,11 +79,14 @@ nav ul li a:hover {
 .menu-btn.active span:nth-child(3) {
   transform: translateY(-6px) rotate(-45deg);
 }
-.logo {
+.logo,
+.headlogo {
   font-family: "Prata", serif;
   font-size: 19px;
   letter-spacing: 2px;
   text-transform: uppercase;
+  color: white;
+  text-decoration: none;
 }
 .button {
   background: rgba(255, 255, 255, 0.2);
@@ -147,6 +150,10 @@ nav ul li a:hover {
   background-position: center;
   width: 100vw;
   padding: 0px 30px;
+}
+#About-hero {
+  background: url("https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1600&q=60")
+    center/cover no-repeat;
 }
 
 .service-hero::before {
